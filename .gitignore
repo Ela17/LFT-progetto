@@ -1,5 +1,8 @@
-# Compiled class file
+# Compiled class file and txt file
 *.class
+/bin/
+*.txt
+*.lft
 
 # Log file
 *.log
