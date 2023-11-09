@@ -1,19 +1,15 @@
 # Variabili
 JC = javac
-JFLAGS = -d bin -cp src:bin
+JFLAGS = -d bin -cp src/
 JCOMPILE = $(JC) $(JFLAGS)
-ARGS = input.lft
+ARGS = && touch bin/input.lft
 
-compile_all:
-	$(JCOMPILE) src/L2_lexer/*.java
-	$(JCOMPILE) src/L3_parser/*.java
-
-# Esegue il programma
-lexer: compile_all
-	java -cp bin src.L2_lexer.Lexer $(ARGS)
+# Compila ed esegue il programma
+lexer: 
+	$(JCOMPILE) src/L2_lexer/Lexer.java $(ARGS)
 	
-parser1: compile_all
-	java -cp bin src.L3_parser.Parser $(ARGS)
+parser1:
+	$(JCOMPILE) src/L3_parser1/Parser.java $(ARGS)
 
 # Cancella tutti i file .class nella directory build
 clean:
