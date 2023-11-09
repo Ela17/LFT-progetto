@@ -1,0 +1,21 @@
+public class Test {
+    public static void main() {
+
+        assign 300 to d;
+        print(*{d t})
+
+        if (> x y) assign 0 to x 
+        else print(y) 
+
+        for (dog:=0; dog<=printread) 
+            assign dog+1 to dog
+        else 5 == print < end
+
+        5+;)
+
+        (34+26( - (2+15-( 27
+
+        ora trova un errore
+        17&5
+    }
+}
