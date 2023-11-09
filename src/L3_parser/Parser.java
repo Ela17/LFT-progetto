@@ -31,13 +31,27 @@ public class Parser {
     }
 
     public void start() {
-        expr();
-        match(Tag.EOF);
+        switch (look.tag) {
+            case '(':
+            case Tag.NUM:
+                expr();
+                match(Tag.EOF);
+                break;
+            default:
+                error("found " + look + " in start with guide {(, NUM}");
+        }     
     }
 
     private void expr() {
-        term();
-        exprp();
+        switch (look.tag) {
+            case '(':
+            case Tag.NUM:
+                term();
+                exprp();
+                break;
+            default:
+                error("found " + look + " in expr with guide {(, NUM}");
+        }
     }
 
     private void exprp() {
@@ -52,14 +66,24 @@ public class Parser {
                 term();
                 exprp();
                 break;
+            case ')':
+            case Tag.EOF:
+                break;
             default:
-                error("Error in exprp");
+                error("found " + look + " in exprp with guide {+, -, ), EOF}");
 	    }
     }
 
     private void term() {
-        fact();
-        termp();
+        switch (look.tag) {
+            case '(':
+            case Tag.NUM:
+                fact();
+                termp();
+                break;
+            default:
+                error("found " + look + " in term with guide {(, NUM}");
+        }
     }
 
     private void termp() {
@@ -74,8 +98,13 @@ public class Parser {
                 fact();
                 termp();
                 break;
+            case '+':
+            case '-':
+            case ')':
+            case Tag.EOF:
+                break;
             default:
-                error("Error in termp");
+                error("found " + look + " in termp with guide {*, /, +, -, ), EOF}");
         }
     }
 
@@ -90,7 +119,7 @@ public class Parser {
                 match(Tag.NUM);
                 break;
             default:
-                error("Error in fact");
+                error("found " + look + " in fact with guide {(, NUM}");
         }
     }
 		
