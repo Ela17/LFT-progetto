@@ -1,0 +1,11 @@
+GUIDA ( <start> -> <expr>EOF )      = { (, NUM }
+GUIDA ( <expr>  -> <term><exprp> )  = { (, NUM }
+GUIDA ( <exprp> -> +<term><exprp> ) = { + }
+GUIDA ( <exprp> -> -<term><exprp> ) = { - }
+GUIDA ( <exprp> -> epsilon )        = { ), EOF }
+GUIDA ( <term>  -> <fact><termp> )  = { (, NUM }
+GUIDA ( <termp> -> *<fact><termp> ) = { * }
+GUIDA ( <termp> -> /<fact><termp> ) = { / }
+GUIDA ( <termp> -> epsilon )        = { +, -, ), EOF }
+GUIDA ( <fact>  -> (<exp>) )        = { ( }
+GUIDA ( <fact>  -> NUM )            = { NUM }
