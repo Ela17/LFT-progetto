@@ -106,6 +106,9 @@ public class Parser {
                 match(Tag.FOR);
                 match('(');
                 statp();
+                match(')');
+                match(Tag.DO);
+                stat();
                 break;
             case Tag.IF:
                 match(Tag.IF);
@@ -135,15 +138,9 @@ public class Parser {
                 expr();
                 match(';');
                 bexpr();
-                match(')');
-                match(Tag.DO);
-                stat();
                 break;
             case Tag.RELOP:
                 bexpr();
-                match(')');
-                match(Tag.DO);
-                stat();
                 break;
 
             default:

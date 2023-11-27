@@ -12,15 +12,15 @@ GUIDA(<em>\<stat> -> print[\<exprlist>]</em>) = { print }
 
 GUIDA(<em>\<stat> -> read[\<idlist>]</em>) = { read }
 
-GUIDA(<em>\<stat> -> for(\<statp></em>) = { for }
+GUIDA(<em>\<stat> -> for(\<statp>) do \<stat></em>) = { for }
 
 GUIDA(<em>\<stat> -> if(\<bexpr>)\<stat>\<stats></em>) = { if }
 
 GUIDA(<em>\<stat> -> {\<statlist>}</em>) = { '{' }
 
-GUIDA(<em>\<statp> -> ID:=\<expr>;\<bexpr>)do\<stat></em>) = { ID }
+GUIDA(<em>\<statp> -> ID:=\<expr>;\<bexpr></em>) = { ID }
 
-GUIDA(<em>\<statp> -> <bexpr>) do <stat></em>) = { RELOP }
+GUIDA(<em>\<statp> -> <bexpr></em>) = { RELOP }
 
 GUIDA(<em>\<stats> -> else\<stat>end</em>) = { else }
 
