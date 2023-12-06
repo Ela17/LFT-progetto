@@ -152,7 +152,7 @@ public class Evaluator {
         String path = "input.lft"; // il percorso del file da leggere
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
-            Valutatore valutatore = new Valutatore(lex, br);
+            Evaluator valutatore = new Evaluator(lex, br);
             valutatore.start();
             br.close();
         } catch (IOException e) {e.printStackTrace();}
