@@ -1,15 +1,15 @@
-package L4_valutatore;
+package L4_evaluator;
 
 import java.io.*; 
 
 import L2_lexer.*;
 
-public class Valutatore {
+public class Evaluator {
     private Lexer lex;
     private BufferedReader pbr;
     private Token look;
 
-    public Valutatore(Lexer l, BufferedReader br) { 
+    public Evaluator(Lexer l, BufferedReader br) { 
         lex = l; 
         pbr = br;
         move(); 
