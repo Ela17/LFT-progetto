@@ -140,6 +140,7 @@ public class Parser {
                 bexpr();
                 break;
             case Tag.RELOP:
+                match(Tag.RELOP);
                 bexpr();
                 break;
 
