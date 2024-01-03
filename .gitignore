@@ -3,6 +3,7 @@
 /bin/
 *.txt
 *.lft
+*.j
 
 # Log file
 *.log
