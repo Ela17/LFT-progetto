@@ -159,7 +159,6 @@ public class Translator {
                 bexpr(label);
                 break;
             case Tag.RELOP:
-                match(Tag.RELOP);
                 bexpr(label);
                 break;
 
@@ -342,7 +341,8 @@ public class Translator {
                 if(addr == -1) 
                     error("Variable " + ((Word)look).lexeme + " not initialized.");
                 code.emit(OpCode.iload, addr); 
-                code.emit(OpCode.istore, id_addr);   
+                if(id_addr != -1)
+                    code.emit(OpCode.istore, id_addr); 
                 match(Tag.ID);
                 break;
 
