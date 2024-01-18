@@ -16,7 +16,7 @@ public class Es1_7 {
 							state = 2;
 					}
 					else if(c == ' ')
-                        state = 3;
+                        state = 0;
                     else
 						state = -1;
 					break;
@@ -29,10 +29,10 @@ public class Es1_7 {
 							state = 2;
 					}
                     else if (c == ' ')
-                        state = 4;
+                        state = 3;
 					else if(Character.isLetter(c)) {
 						if ((c >= 'a' && c <= 'k') || (c >= 'A' && c <= 'K'))
-							state = 6;
+							state = 5;
                         else
 							state = -1;
 					}
@@ -48,40 +48,41 @@ public class Es1_7 {
 							state = 2;
 					}
                     else if (c == ' ')
-                        state = 5;
+                        state = 4;
 					else if(Character.isLetter(c)) {
 						if ((c >= 'a' && c <= 'k') || (c >= 'A' && c <= 'K'))
 							state = -1;
 						else
-							state = 6;
+							state = 5;
 					}
                     
 					else
 						state = -1;
 					break;
 
-				case 3:
-					if(Character.isDigit(c)) {
-						if(Character.getNumericValue(c) % 2 == 0)
-							state = 1;
-						else
-							state = 2;
-					}
-                    else if(c == ' ')
+				
+                case 3:
+                    if ((c >= 'a' && c <= 'k') || (c >= 'A' && c <= 'K'))
+                        state = 5;
+					else if (c == ' ')
                         state = 3;
                     else
                         state = -1;
                     break;
                 
                 case 4:
-                    if ((c >= 'a' && c <= 'k') || (c >= 'A' && c <= 'K'))
-                        state = 6;
+                    if ((c >= 'l' && c <= 'z') || (c >= 'L' && c <= 'Z'))
+                        state = 5;
+					else if (c == ' ')
+                        state = 4;
                     else
                         state = -1;
                     break;
-                
+
                 case 5:
-                    if ((c >= 'l' && c <= 'z') || (c >= 'L' && c <= 'Z'))
+                    if(Character.isLetter(c))
+                        state = 5;
+                    else if(c == ' ')
                         state = 6;
                     else
                         state = -1;
@@ -89,7 +90,7 @@ public class Es1_7 {
 
                 case 6:
                     if(Character.isLetter(c))
-                        state = 6;
+                        state = 5;
                     else if(c == ' ')
                         state = 7;
                     else
@@ -97,24 +98,15 @@ public class Es1_7 {
                     break;
 
                 case 7:
-                    if(Character.isLetter(c))
-                        state = 6;
-                    else if(c == ' ')
-                        state = 8;
-                    else
-                        state = -1;
-                    break;
-
-                case 8:
                     if(c == ' ')
-                        state = 8;
+                        state = 7;
                     else
                         state = -1;
                     break;
 			}
 		}
 	
-		return state == 6 || state == 7 || state == 8;
+		return state == 5 || state == 6 || state == 7;
 	}
         
 	public static void main(String[] args) {
