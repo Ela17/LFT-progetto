@@ -105,7 +105,7 @@ public class Es1_4 {
 
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.out.println("Usage: Es1_1 <string>");
+            System.out.println("Usage: Es1_4 <string>");
             return;
         }
         System.out.println(scan(args[0]) ? "OK" : "NOPE");
