@@ -41,51 +41,33 @@ public class Es1_6 {
 
                 case 3:
                     if(c == 'a' || c == '/')
-                        state = 4;
+                        state = 3;
                     else if(c == '*')
-                        state = 5;
+                        state = 4;
                     else
                         state = -1;
                     break;
 
                 case 4:
-                    if(c == 'a' || c == '/')
-                        state = 4;
-                    else if(c == '*')
-                        state = 5;
-                    else
-                        state = -1;
-                    break;
-
-                case 5:
                     if(c == 'a')
-                        state = 4;
+                        state = 3;
                     else if(c == '/')
-                        state = 6;
-                    else if(c == '*')
-                        state = 5;
-                    else
-                        state = -1;
-                    break;
-
-                case 6:
-                    if(c == 'a' || c == '*')
                         state = 1;
-                    else if(c == '/')
-                        state = 2;
-                    else if (c == 0) ;
+                    else if(c == '*')
+                        state = 4;
                     else
                         state = -1;
                     break;
+            
             }
         }
-        return state == 1 || state == 6;
+        return state == 1;
     }
 
     public static void main(String[] args)
     {
         if (args.length < 1) {
-            System.out.println("Usage: Es1_1 <string>");
+            System.out.println("Usage: Es1_6 <string>");
             return;
         }
         System.out.println(scan(args[0]) ? "OK" : "NOPE");
