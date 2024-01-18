@@ -13,7 +13,7 @@ public class Es1_9 {
 					if (c == 'a')
                         state = 1;
                     else if (c == 'b')
-                        state = 2;
+                        state = 0;
                     else
                         state = -1;
 					break;
@@ -22,41 +22,33 @@ public class Es1_9 {
 					if (c == 'a')
                         state = 1;
                     else if (c == 'b')
-                        state = 3;
-                    else
-                        state = -1;
-					break;
-
-				case 2:
-					if (c == 'a')
-                        state = 1;
-                    else if (c == 'b')
                         state = 2;
                     else
                         state = -1;
 					break;
 
-				case 3:
+
+				case 2:
                     if (c == 'a')
                         state = 1;
                     else if (c == 'b')
-                        state = 4;
+                        state = 3;
                     else
                         state = -1;
                     break;
                     
-                case 4:
+                case 3:
 					if (c == 'a')
                         state = 1;
                     else if (c == 'b')
-                        state = 2;
+                        state = 0;
                     else
                         state = -1;
                     break;
 			}
 		}
 	
-		return state == 1 || state == 3 || state == 4;
+		return state == 1 || state == 2 || state == 3;
 	}
         
 	public static void main(String[] args) {
