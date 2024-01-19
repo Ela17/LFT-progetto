@@ -4,7 +4,7 @@ JFLAGS = -d bin -cp src/
 JCOMPILE = $(JC) $(JFLAGS)
 ARGS = && touch bin/input.lft
 
-all: lexer parser1 parser2 evaluator translator1
+all: lexer parser1 parser2 evaluator translator1 translator2
 
 # Compila ed esegue il programma
 lexer: 
@@ -21,6 +21,9 @@ evaluator:
 
 translator1:
 	$(JCOMPILE) src/L5_1_translator/*.java $(ARGS)
+
+translator2:
+	$(JCOMPILE) src/L5_2_translator/*.java $(ARGS)
 
 # Cancella tutti i file .class nella directory build
 clean:
