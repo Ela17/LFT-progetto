@@ -1,4 +1,4 @@
-package L5_1_translator;
+package L5_translator2;
 
 import java.io.*;
 import L2_lexer.*;
@@ -159,6 +159,9 @@ public class Translator {
                 bexpr(label);
                 break;
             case Tag.RELOP:
+            case Tag.OR:
+            case Tag.AND:
+            case '!':
                 bexpr(label);
                 break;
 
@@ -254,7 +257,7 @@ public class Translator {
                 }
                 match(Tag.ID);
 
-                if(isAssign /*&& look.tag == ','*/)
+                if(isAssign)
                     code.emit(OpCode.dup);
                 else if(!isAssign)                              // read
                     code.emit(OpCode.invokestatic, 0);
@@ -299,6 +302,24 @@ public class Translator {
 					default:
 						break;
 				}
+                break;
+            case Tag.OR:
+                match(Tag.OR);
+                int or_continue = code.newLabel();
+                bexpr(or_continue);
+                code.emitLabel(or_continue);
+                bexpr(label);
+                break;
+            case Tag.AND:
+                match(Tag.AND);
+                int and_continue = code.newLabel();
+                bexpr(and_continue);
+                code.emitLabel(and_continue);
+                bexpr(label);
+                break;
+            case '!':
+                match('!');
+                bexpr(label);
                 break;
             default:
                 error("found " + look + " in bexpr");

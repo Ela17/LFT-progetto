@@ -1,4 +1,4 @@
-package L5_2_translator;
+package L5_translator1;
 
 import java.util.LinkedList;
 import java.io.*;

@@ -1,4 +1,4 @@
-package L5_1_translator;
+package L5_translator1;
 
 public class Instruction {
     OpCode opCode;
