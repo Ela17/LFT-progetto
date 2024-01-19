@@ -20,10 +20,10 @@ evaluator:
 	$(JCOMPILE) src/L4_evaluator/Evaluator.java $(ARGS)
 
 translator1:
-	$(JCOMPILE) src/L5_1_translator/*.java $(ARGS)
+	$(JCOMPILE) src/L5_translator1/*.java $(ARGS)
 
 translator2:
-	$(JCOMPILE) src/L5_2_translator/*.java $(ARGS)
+	$(JCOMPILE) src/L5_translator2/*.java $(ARGS)
 
 # Cancella tutti i file .class nella directory build
 clean:
