@@ -70,7 +70,7 @@ public class Parser {
                 break;
             case ')':
             case Tag.EOF:
-                break;
+                break;  // epsilon
             default:
                 error("found " + look + " in exprp with guide {+, -, ), EOF}");
 	    }

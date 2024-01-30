@@ -28,3 +28,7 @@ translator2:
 # Cancella tutti i file .class nella directory build
 clean:
 	rm -r bin/
+
+jasmin:
+	java -jar jasmin.jar bin/Output.j
+	java Output

@@ -8,7 +8,7 @@ $$
 |*\<start> $\rightarrow$ \<expr> EOF*|$\{$ '(', *NUM* $\}$|
 |*\<expr> $\rightarrow$ \<term>\<exprp>*|$\{$ '(', *NUM* $\}$|
 |*\<exprp> $\rightarrow$ $+$\<term>\<exprp>*|$\{$ '$+$' $\}$|
-|*\<exprp> $\rightarrow$ -\<term>\<exprp>*|$\{ $ '$-$' $\}$|
+|*\<exprp> $\rightarrow$ $-$\<term>\<exprp>*|$\{ $ '$-$' $\}$|
 |*\<exprp> $\rightarrow$ $\varepsilon$*|$\{$ ')', *EOF* $\}$|
 |*\<term> $\rightarrow$ \<fact>\<termp>*|$\{$ '(', *NUM* $\}$|
 |*\<termp> $\rightarrow$ $*$\<fact>\<termp>*|$\{$ '$*$' $\}$|

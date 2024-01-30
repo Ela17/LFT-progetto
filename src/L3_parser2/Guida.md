@@ -1,12 +1,12 @@
 | | GUIDA |
 |---|---|
-|*\<prog> $\rightarrow$ \<statlist>*|$\{$ *assign*, *print*, *read*, *for*, *if*, '{' $\}$|
+|*\<prog> $\rightarrow$ \<statlist> EOF*|$\{$ *assign*, *print*, *read*, *for*, *if*, '{' $\}$|
 |*\<statlist> $\rightarrow$ \<stat>\<statlistp>*|$\{$ *assign*, *print*, *read*, *for*, *if*, '{' $\}$|
 |*\<statlistp> $\rightarrow$ $;$\<stat>\<statlistp>*|$\{$ ' $;$ ' $\}$|
 |*\<statlistp> $\rightarrow$ $\varepsilon$*|$\{$ *EOF*, '}' $\}$|
-|*\<stat> $\rightarrow$ assign \<expr> to \<idlist>*|$\{$ *assign* $\}$|
-|*\<stat> $\rightarrow$ *print* $[$\<exprlist> $]$*|$\{$ *print* $\}$|
-|*\<stat> $\rightarrow$ *read* $[$\<idlist> $]$*|$\{$ *read* $\}$|
+|*\<stat> $\rightarrow$ assign \<assignlist>*|$\{$ *assign* $\}$|
+|*\<stat> $\rightarrow$ *print* $($\<exprlist> $)$*|$\{$ *print* $\}$|
+|*\<stat> $\rightarrow$ *read* $($\<idlist> $)$* |$\{$ *read* $\}$|
 |*\<stat> $\rightarrow$ *for* $($\<statp>$)$ do \<stat>*|$\{$ *for* $\}$|
 |*\<stat> $\rightarrow$ *if* $($\<bexpr>$)$ \<stat>\<stats>*|$\{$ *if* $\}$|
 |*\<stat> $\rightarrow$ $\{$\<statlist> $\}$*|$\{$ '{' $\}$|
@@ -19,7 +19,7 @@
 |*\<assignlistp> $\rightarrow$ $\varepsilon$*|$\{$ *EOF*, '}', '$;$', *else*, *end* $\}$|
 |*\<idlist> $\rightarrow$ ID \<idlistp>*|$\{$ *ID* $\}$|
 |*\<idlistp> $\rightarrow$ $,$ ID \<idlistp>*|$\{$ '$,$' $\}$|
-|*\<idlistp> $\rightarrow$ $\varepsilon$*|$\{$ ')', '}' $\}$|
+|*\<idlistp> $\rightarrow$ $\varepsilon$*|$\{$ ')', ']' $\}$|
 |*\<bexpr> $\rightarrow$ RELOP \<expr>\<expr>*|$\{$ *RELOP* $\}$|
 |*\<expr> $\rightarrow$ $+($\<exprlist> $)$*|$\{$ '$+$' $\}$|
 |*\<expr> $\rightarrow$ $*($\<exprlist> $)$*|$\{$ '$*$' $\}$|
@@ -28,5 +28,5 @@
 |*\<expr> $\rightarrow$ NUM*|$\{$ *NUM* $\}$|
 |*\<expr> $\rightarrow$ ID*|$\{$ *ID* $\}$|
 |*\<exprlist> $\rightarrow$ \<expr>\<exprlistp>*|$\{$ '$+$', '$-$', '$*$', '$/$', *NUM*, *ID* $\}$|
-|*\<exprlistP> $\rightarrow$ $,$ \<expr>\<exprlistp>*|$\{$ '$,$' $\}$|
-|*\<exprlistP> $\rightarrow$ $,$ $\varepsilon$*|$\{$ ')' $\}$|
+|*\<exprlistp> $\rightarrow$ $,$ \<expr>\<exprlistp>*|$\{$ '$,$' $\}$|
+|*\<exprlistp> $\rightarrow$ $\varepsilon$*|$\{$ ')' $\}$|
