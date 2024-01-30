@@ -6,7 +6,7 @@ cd src/L1_dfa
 
 javac <class_name>.java
 
-java <class_name>
+java <class_name> <input_string>
 ```
 
 

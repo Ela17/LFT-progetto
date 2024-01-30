@@ -1,11 +1,18 @@
-GUIDA (<em>\<start> -> \<expr>EOF<em> = { '(', NUM }
-GUIDA (<em>\<expr>  -> \<term>\<exprp><em>)  = { '(', NUM }
-GUIDA (<em>\<exprp> -> +\<term>\<exprp><em>) = { '+' }
-GUIDA (<em>\<exprp> -> -\<term>\<exprp><em>) = { '-' }
-GUIDA (<em>\<exprp> -> $\varepsilon$<em>) = { ')', EOF }
-GUIDA (<em>\<term>  -> \<fact>\<termp><em>) = { '(', NUM }
-GUIDA (<em>\<termp> -> *\<fact>\<termp><em>) = { '*' }
-GUIDA (<em>\<termp> -> /\<fact>\<termp><em>) = { '/' }
-GUIDA (<em>\<termp> -> $\varepsilon$<em>) = { '+', '-', ')', EOF }
-GUIDA (<em>\<fact>  -> (\<expr>)<em>) = { '(' }
-GUIDA (<em>\<fact>  -> NUM ) = { NUM }
+$$
+    G_{expr} = ({⟨start⟩, ⟨expr ⟩, ⟨exprp⟩, ⟨term⟩, ⟨termp⟩, ⟨fact⟩}, {+, -, *, /, (, ), NUM, EOF}, P, ⟨start⟩)
+$$
+---
+
+| | GUIDA |
+|---|---|
+|*\<start> $\rightarrow$ \<expr> EOF*|$\{$ '(', *NUM* $\}$|
+|*\<expr> $\rightarrow$ \<term>\<exprp>*|$\{$ '(', *NUM* $\}$|
+|*\<exprp> $\rightarrow$ $+$\<term>\<exprp>*|$\{$ '$+$' $\}$|
+|*\<exprp> $\rightarrow$ -\<term>\<exprp>*|$\{ $ '$-$' $\}$|
+|*\<exprp> $\rightarrow$ $\varepsilon$*|$\{$ ')', *EOF* $\}$|
+|*\<term> $\rightarrow$ \<fact>\<termp>*|$\{$ '(', *NUM* $\}$|
+|*\<termp> $\rightarrow$ $*$\<fact>\<termp>*|$\{$ '$*$' $\}$|
+|*\<termp> $\rightarrow$ $/$\<fact>\<termp>*|$\{$ '/ ' $\}$|
+|*\<termp> $\rightarrow$ $\varepsilon$*|$\{$ '$+$', '$-$', ')', *EOF* $\}$|
+|*\<fact> $\rightarrow$ $($\<expr> $)$*|$\{$ '(' $\}$|
+|*\<fact> $\rightarrow$ NUM*|$\{$ *NUM* $\}$|

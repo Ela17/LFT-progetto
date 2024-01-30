@@ -19,7 +19,7 @@ public class Lexer {
     public Token lexical_scan(BufferedReader br) {
         while(true) {
             while (peek == ' ' || peek == '\t' || peek == '\n'  || peek == '\r') {
-                if (peek == '\n') line++;
+                if (peek == '\n') line++;   // a capo
                 readch(br);
             }
 
@@ -66,11 +66,11 @@ public class Lexer {
     
                 case '/' :
                     readch(br);
-                    if (peek == '/') {
+                    if (peek == '/') {  // commento su una linea
                         while (peek != '\n' && peek != EOF) 
                             readch(br);
                     }
-                    else if (peek == '*') {
+                    else if (peek == '*') { // commento su più linee
                         char prev = ' ';
                         peek = ' ';
                         do {
@@ -144,7 +144,7 @@ public class Lexer {
                     readch(br);
                     if (peek == ' ') {
                         return Word.lt;
-                    } else if (peek == '>') {
+                    } else if (peek == '>') {   // <> is !=
                         peek = ' ';
                         return Word.ne;
                     } else if(peek == '=') {
@@ -165,7 +165,7 @@ public class Lexer {
                     }
     
                 default:
-                    if (Character.isLetter(peek) || peek == '_') {
+                    if (Character.isLetter(peek) || peek == '_') {  // identifier: (a+...+Z+(_(_)∗(a+...+Z+0+...+9))) (a+...+Z+0+...+9+_)*
                         String s = "";
                         boolean onlyUnderscore = true;
     
@@ -193,7 +193,7 @@ public class Lexer {
                             case "read" : return Word.read;
                             default : return new Word(Tag.ID, s);
                         }
-                    } else if (Character.isDigit(peek)) {
+                    } else if (Character.isDigit(peek)) {   // number: 0+(1+...+9)(0+...+9)*
                         int val = peek - '0';   // to int
                         readch(br);
     
