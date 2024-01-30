@@ -302,7 +302,6 @@ public class Translator {
                 break;
             default:
                 error("found " + look + " in bexpr");
-                break;
         }
     }
 
