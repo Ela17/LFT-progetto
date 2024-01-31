@@ -12,7 +12,7 @@
 ||\|| { ⟨statlist⟩ }|
 |⟨statp⟩|::=|ID := ⟨expr⟩;|
 ||\|| ε|
-|⟨statS⟩|::=|ELSE ⟨stat⟩;|
+|⟨stats⟩|::=|else ⟨stat⟩;|
 ||\|| ε|
 |⟨assignlist⟩|::=|[ ⟨expr⟩ to ⟨idlist⟩ ] ⟨assignlistp⟩|
 |⟨assignlistp⟩|::=|[ ⟨expr⟩ to ⟨idlist⟩ ] ⟨assignlistp⟩ |
