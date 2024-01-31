@@ -163,7 +163,6 @@ public class Translator {
                 match(Tag.INIT);
                 expr();
                 code.emit(OpCode.istore, tmp_addr);
-                // aggiungere istore di tmp_addr
                 match(';');
                 break;
             case Tag.RELOP:
