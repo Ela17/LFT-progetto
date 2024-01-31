@@ -25,13 +25,12 @@ java <package_name>.<class_name>
 
 
 ---
->NOTA1:
+>NOTA:
 >
->Gli eseguibili si trovano nella cartella `bin/`,
->dove si trovano anche i file di input e di output.
-
->NOTA2:
+>Per i dfa è presente un file `dfa.md` con le tabelle di transizione.
 >
->Per i dfa è presente un file `dfa.md` con le tabelle relative agli automi degli esercizi.
+>Per il parser1 è presente un file `Guida.md` con gli insiemi guida.
 >
->Per i parser sono presenti i file `Guida.md` con le guide relative alle produzioni.
+>Per il parser2 ci sono `Produzioni.md`, `FIRST-FOLLOW.md` e `Guide.md` relativamente per la grammatica modificata LL(1), first e follow e insiemi guita per tale grammatica.
+>
+>Gli esercizi della sezione L5 si riferiscono alla grammatica del parser2.
