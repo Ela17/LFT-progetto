@@ -34,3 +34,5 @@ java <package_name>.<class_name>
 >Per il parser2 ci sono `Produzioni.md`, `FIRST-FOLLOW.md` e `Guide.md` relativamente per la grammatica modificata LL(1), first e follow e insiemi guita per tale grammatica.
 >
 >Gli esercizi della sezione L5 si riferiscono alla grammatica del parser2.
+>
+>`L5_translator1x3` incapsula gli esercizi 5.1 e 5.3
