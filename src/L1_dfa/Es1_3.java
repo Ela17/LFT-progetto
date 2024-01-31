@@ -22,7 +22,7 @@ public class Es1_3 {
 				case 1:
 					if(Character.isDigit(c)) {
 						if(Character.getNumericValue(c) % 2 == 0)
-							state = 1;
+							/*no op*/;
 						else
 							state = 2;
 					}
@@ -40,8 +40,7 @@ public class Es1_3 {
 					if(Character.isDigit(c)) {
 						if(Character.getNumericValue(c) % 2 == 0)
 							state = 1;
-						else
-							state = 2;
+						else /*no op*/;
 					}
 					else if(Character.isLetter(c)) {
 						if ((c >= 'a' && c <= 'k') || (c >= 'A' && c <= 'K'))
@@ -54,8 +53,7 @@ public class Es1_3 {
 					break;
 
 				case 3:
-					if(Character.isLetter(c))
-						state = 3;
+					if(Character.isLetter(c)) /*no op*/;
 					else
 						state = -1;
 			}

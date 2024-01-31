@@ -52,8 +52,7 @@ public class Es1_10 {
                     break;
 
                 case 6:
-                    if(c != 0)
-                        state = -1;
+                    state = -1;
                     break;
 
                 case 7:

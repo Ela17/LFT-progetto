@@ -22,8 +22,7 @@ public class Es1_1
                 case 1:
                     if (ch == '0')
                         state = 2;
-                    else if (ch == '1')
-                        state = 1;
+                    else if (ch == '1') /*no op*/;
                     else
                         state = -1;
                     break;

@@ -1,4 +1,4 @@
-package L5_translator2;
+package L5_support;
 
 public enum OpCode { 
     ldc, imul, ineg, idiv, iadd, 

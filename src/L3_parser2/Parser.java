@@ -106,6 +106,7 @@ public class Parser {
                 match(Tag.FOR);
                 match('(');
                 statp();
+                bexpr();
                 match(')');
                 match(Tag.DO);
                 stat();
@@ -117,6 +118,7 @@ public class Parser {
                 match(')');
                 stat();
                 stats();
+                match(Tag.END);
                 break;
             case '{':
                 match('{');
@@ -137,10 +139,8 @@ public class Parser {
                 match(Tag.INIT);
                 expr();
                 match(';');
-                bexpr();
                 break;
             case Tag.RELOP:
-                bexpr();
                 break;
 
             default:
@@ -154,10 +154,8 @@ public class Parser {
             case Tag.ELSE:
                 match(Tag.ELSE);
                 stat();
-                match(Tag.END);
                 break;
             case Tag.END:
-                match(Tag.END);
                 break;
 
             default:
@@ -195,12 +193,11 @@ public class Parser {
             case ';':
             case '}':
             case Tag.ELSE:
-            case Tag.END:
             case Tag.EOF:
                 break;
 
             default:
-                error("found " + look + " in assignlistp with guide { [, ;, }, ELSE, END, EOF }");
+                error("found " + look + " in assignlistp with guide { [, ;, }, ELSE, EOF }");
                 break;
         }
     }

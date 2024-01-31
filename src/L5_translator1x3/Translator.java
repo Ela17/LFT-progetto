@@ -1,7 +1,8 @@
-package L5_translator1;
+package L5_translator1x3;
 
 import java.io.*;
 import L2_lexer.*;
+import L5_support.*;
 
 enum _exprEnum {
 	sum, mul, print
@@ -96,7 +97,8 @@ public class Translator {
         switch(look.tag) {
             case Tag.ASSIGN:
                 match(Tag.ASSIGN);
-                assignlist();
+                assignlist();   // [expr TO idlist]...
+                
                 break;
             case Tag.PRINT:
                 match(Tag.PRINT);
@@ -111,27 +113,32 @@ public class Translator {
                 match(')');
                 break;
             case Tag.FOR:
-                int lfor_start = code.newLabel();
-                int lfor_end = code.newLabel();
-                code.emitLabel(lfor_start);
+                int condition_true = code.newLabel();
+                int condition_false = code.newLabel();
                 match(Tag.FOR);
                 match('(');
-                statp(lfor_end);
+                statp();    //  initialize variable in for-loop
+                code.emitLabel(condition_true);
+                bexpr(condition_false);
                 match(')');
                 match(Tag.DO);
                 stat();
-                code.emit(OpCode.GOto, lfor_start);
-                code.emitLabel(lfor_end);
+                code.emit(OpCode.GOto, condition_true);
+                code.emitLabel(condition_false);
                 break;
             case Tag.IF:
                 match(Tag.IF);
                 match('(');
                 int lif_false = code.newLabel();
+                int lif_true = code.newLabel();
                 bexpr(lif_false);
                 match(')');
                 stat();
+                code.emit(OpCode.GOto, lif_true);   // se eseguo stat salto stats
                 code.emitLabel(lif_false);
-                stats();
+                stats();    
+                code.emitLabel(lif_true);
+                match(Tag.END);
                 break;
             case '{':
                 match('{');
@@ -144,7 +151,7 @@ public class Translator {
         }
     }
 
-    public void statp(int label) {
+    public void statp() {
         switch (look.tag) {
             case Tag.ID:
                 int tmp_addr = st.lookupAddress(((Word)look).lexeme);
@@ -154,12 +161,11 @@ public class Translator {
                 }
                 match(Tag.ID);
                 match(Tag.INIT);
-                expr(tmp_addr);
+                expr();
+                code.emit(OpCode.istore, tmp_addr);
                 match(';');
-                bexpr(label);
                 break;
             case Tag.RELOP:
-                bexpr(label);
                 break;
 
             default:
@@ -173,7 +179,6 @@ public class Translator {
                 match(Tag.ELSE);
                 stat();
             case Tag.END:
-                match(Tag.END);
                 break;
 
             default:
@@ -185,7 +190,7 @@ public class Translator {
         switch (look.tag) {
             case '[':
                 match('[');
-                expr(-1);
+                expr();
                 match(Tag.TO);
                 idlist(true);
                 match(']');
@@ -201,7 +206,7 @@ public class Translator {
         switch (look.tag) {
             case '[':
                 match('[');
-                expr(-1);
+                expr();
                 match(Tag.TO);
                 idlist(true);
                 match(']');
@@ -221,22 +226,22 @@ public class Translator {
 
     private void idlist(boolean isAssign) {
         switch(look.tag) {
-            case Tag.ID:
-                int id_addr = st.lookupAddress(((Word)look).lexeme);
-                    if (id_addr == -1) {
-                        id_addr = count;
-                        st.insert(((Word)look).lexeme,count++);
-                    }
-                    match(Tag.ID);
-                    if(isAssign && look.tag == ',')
-                        code.emit(OpCode.dup);
-                    else if(!isAssign)
-                        code.emit(OpCode.invokestatic, 0);
-                    code.emit(OpCode.istore, id_addr); 
-                    idlistp(isAssign);
-                    break;
-                    
-            default:
+	    case Tag.ID:
+        	int id_addr = st.lookupAddress(((Word)look).lexeme);
+                if (id_addr == -1) {
+                    id_addr = count;
+                    st.insert(((Word)look).lexeme,count++);
+                }
+                match(Tag.ID);
+                if(isAssign && look.tag == ',') 
+                    code.emit(OpCode.dup);
+                else if(!isAssign)      // reading
+                    code.emit(OpCode.invokestatic, 0);
+                code.emit(OpCode.istore, id_addr);
+                idlistp(isAssign);
+                break;
+                
+                default:
                 error("found " + look + " in idlist");
 
     	}
@@ -253,9 +258,9 @@ public class Translator {
                 }
                 match(Tag.ID);
 
-                if(isAssign)
+                if(isAssign && look.tag == ',')
                     code.emit(OpCode.dup);
-                else if(!isAssign)                              // read
+                else if(!isAssign)         // reading
                     code.emit(OpCode.invokestatic, 0);
                 code.emit(OpCode.istore, id_addr);
 
@@ -269,42 +274,43 @@ public class Translator {
         }
     }
 
-    public void bexpr(int label) {
+    public void bexpr(int label_false) {
         switch (look.tag) {
             case Tag.RELOP:
                 String tmp = ((Word)look).lexeme;
                 match(Tag.RELOP);
-                expr(-1);
-                expr(-1);
+                expr();
+                expr();
                 switch(tmp) {
 					case "<":
-						code.emit(OpCode.if_icmpge, label);
+						code.emit(OpCode.if_icmpge, label_false);
 						break;
 					case ">":
-						code.emit(OpCode.if_icmple, label);
+						code.emit(OpCode.if_icmple, label_false);
 						break;
 					case "<=":
-						code.emit(OpCode.if_icmpgt, label);
+						code.emit(OpCode.if_icmpgt, label_false);
 						break;
 					case ">=":
-						code.emit(OpCode.if_icmplt, label);
+						code.emit(OpCode.if_icmplt, label_false);
 						break;
 					case "==":
-						code.emit(OpCode.if_icmpne, label);
+						code.emit(OpCode.if_icmpne, label_false);
 						break;
 					case "<>":
-						code.emit(OpCode.if_icmpeq, label);
+						code.emit(OpCode.if_icmpeq, label_false);
 						break;
 					default:
 						break;
 				}
+
                 break;
             default:
                 error("found " + look + " in bexpr");
         }
     }
 
-    private void expr(int id_addr) {
+    private void expr() {
         switch(look.tag) {
             case '+':
                 match('+');
@@ -314,8 +320,8 @@ public class Translator {
                 break;
             case '-':
                 match('-');
-                expr(id_addr);
-                expr(id_addr);
+                expr();
+                expr();
                 code.emit(OpCode.isub);
                 break;
             case '*':
@@ -326,8 +332,8 @@ public class Translator {
                 break;
             case '/':
                 match('/');
-                expr(id_addr);
-                expr(id_addr);
+                expr();
+                expr();
                 code.emit(OpCode.idiv);
                 break;
             case Tag.NUM:
@@ -338,9 +344,7 @@ public class Translator {
                 int addr = st.lookupAddress(((Word)look).lexeme);
                 if(addr == -1) 
                     error("Variable " + ((Word)look).lexeme + " not initialized.");
-                code.emit(OpCode.iload, addr); 
-                if(id_addr != -1)
-                    code.emit(OpCode.istore, id_addr); 
+                code.emit(OpCode.iload, addr);
                 match(Tag.ID);
                 break;
 
@@ -357,7 +361,7 @@ public class Translator {
             case '/':
             case Tag.NUM:
             case Tag.ID:
-                expr(-1);
+                expr();
                 if (type == _exprEnum.print) 
                     code.emit(OpCode.invokestatic, 1);
                 exprlistp(type);
@@ -372,7 +376,7 @@ public class Translator {
         switch (look.tag) {
             case ',':
                 match(',');
-                expr(-1);
+                expr();
                 switch (type) {
                     case sum:
                         code.emit(OpCode.iadd);

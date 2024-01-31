@@ -20,7 +20,7 @@ evaluator:
 	$(JCOMPILE) src/L4_evaluator/Evaluator.java $(ARGS)
 
 translator1:
-	$(JCOMPILE) src/L5_translator1/*.java $(ARGS)
+	$(JCOMPILE) src/L5_translator1x3/*.java $(ARGS)
 
 translator2:
 	$(JCOMPILE) src/L5_translator2/*.java $(ARGS)

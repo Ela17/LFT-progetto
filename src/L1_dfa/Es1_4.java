@@ -21,7 +21,7 @@ public class Es1_4 {
 
                 case 1:
                     if(c >= '0' && c <= '9')
-                        state = 1;
+                        /*no op*/;
                     else if(c == '.')
                         state = 2;
                     else if(c == 'e')
@@ -48,7 +48,7 @@ public class Es1_4 {
 
                 case 4:
                     if(c >= '0' && c <= '9')
-                        state = 4;
+                        /*no op*/;
                     else if(c == 'e')
                         state = 5;
                     else
@@ -77,7 +77,7 @@ public class Es1_4 {
 
                 case 7:
                     if(c >= '0' && c <= '9')
-                        state = 7;
+                        /*no op*/;
                     else if(c == '.')
                         state = 8;
                     else
@@ -93,7 +93,7 @@ public class Es1_4 {
 
                 case 9:
                     if(c >= '0' && c <= '9')
-                        state = 9;
+                        /*no op*/;
                     else
                         state = -1;
                     break;
