@@ -25,37 +25,26 @@ public class Es1_5 {
                     break;
 
                 case 2:
-                    if(c == 'a' || c == '/')
-                        state = 3;
+                    if(c == 'a' || c == '/') /*no op*/;
                     else if(c == '*')
-                        state = 4;
+                        state = 3;
                     else
                         state = -1;
                     break;
 
                 case 3:
-                    if(c == 'a' || c == '/')
-                        state = 3;
-                    else if(c == '*')
+                    if(c == 'a')
+                        state = 2;
+                    else if(c == '*') /*no op*/;
+                    else if(c == '/')
                         state = 4;
                     else
                         state = -1;
                     break;
 
                 case 4:
-                    if(c == 'a')
-                        state = 3;
-                    else if(c == '/')
-                        state = 5;
-                    else if(c == '*')
-                        state = 4;
-                    else
-                        state = -1;
-                    break;
-
-                case 5:
-                    if(c != 0)      /* la stringa deve terminare !! */
-                        state = -1;
+                    /* la stringa deve terminare !! */
+                    state = -1;
                     break;
             }
         }
