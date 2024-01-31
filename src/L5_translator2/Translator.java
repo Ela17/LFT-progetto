@@ -133,7 +133,6 @@ public class Translator {
                 int lif_true = code.newLabel();
                 bexpr(lif_true, lif_false, false);
                 match(')');
-                code.emitLabel(lif_true);
                 stat();
                 code.emit(OpCode.GOto, lif_true);   // se eseguo stat salto stats
                 code.emitLabel(lif_false);
