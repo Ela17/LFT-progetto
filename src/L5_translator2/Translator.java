@@ -131,15 +131,14 @@ public class Translator {
                 match('(');
                 int lif_false = code.newLabel();
                 int lif_true = code.newLabel();
-                int lif_end = code.newLabel();
                 bexpr(lif_true, lif_false, false);
                 match(')');
                 code.emitLabel(lif_true);
                 stat();
-                code.emit(OpCode.GOto, lif_end);   // se eseguo stat salto stats
+                code.emit(OpCode.GOto, lif_true);   // se eseguo stat salto stats
                 code.emitLabel(lif_false);
                 stats();    
-                code.emitLabel(lif_end);
+                code.emitLabel(lif_true);
                 match(Tag.END);
                 break;
             case '{':
