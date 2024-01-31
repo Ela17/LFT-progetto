@@ -28,7 +28,7 @@ public class Es1_8 {
                             state = 3;
                     }
 					else if(Character.isLetter(c))
-                        state = 1;
+                        /*no op*/;
 					else
 						state = -1;
 					break;
@@ -41,7 +41,7 @@ public class Es1_8 {
                             state = 6;
                     }
 					else if(Character.isLetter(c))
-                        state = 2;
+                        /*no op*/;
 					else
 						state = -1;
 					break;

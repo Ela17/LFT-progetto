@@ -23,7 +23,7 @@ public class Es1_6 {
                     if(c == '/')
                         state = 2;
                     else if(c == '*' || c == 'a')
-                        state = 1;
+                        /*no op*/;
                     else
                         state = -1;
                     break;
@@ -32,7 +32,7 @@ public class Es1_6 {
                     if(c == '*')
                         state = 3;
                     else if(c == '/')
-                        state = 2;
+                        /*no op*/;
                     else if(c == 'a')
                         state = 1;
                     else
@@ -41,7 +41,7 @@ public class Es1_6 {
 
                 case 3:
                     if(c == 'a' || c == '/')
-                        state = 3;
+                        /*no op*/;
                     else if(c == '*')
                         state = 4;
                     else
@@ -54,7 +54,7 @@ public class Es1_6 {
                     else if(c == '/')
                         state = 1;
                     else if(c == '*')
-                        state = 4;
+                        /*no op*/;
                     else
                         state = -1;
                     break;

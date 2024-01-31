@@ -20,21 +20,20 @@ public class Es1_2 {
 	
 				case 1:
 					if(Character.isDigit(c) || Character.isLetter(c) || c == '_')
-							state = 1;
+							/*no op*/;
 					else state = -1;
 					break;
 	
 				case 2:
 					if (Character.isDigit(c) || Character.isLetter(c))
 							state = 1;
-					else if (c == '_')
-							state = 2;
+					else if (c == '_') /*no op*/;
 					else state = -1;
 					break;
 	
 				case 3:
 					if(Character.isDigit(c) || Character.isLetter(c) || c == '_')
-							state = 3;
+							/*no op*/;
 					else state = -1;
 					break;
 			}

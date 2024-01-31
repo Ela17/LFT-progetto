@@ -13,14 +13,14 @@ public class Es1_9 {
 					if (c == 'a')
                         state = 1;
                     else if (c == 'b')
-                        state = 0;
+                        /*no op*/;
                     else
                         state = -1;
 					break;
 
 				case 1:
 					if (c == 'a')
-                        state = 1;
+                        /*no op*/;
                     else if (c == 'b')
                         state = 2;
                     else
