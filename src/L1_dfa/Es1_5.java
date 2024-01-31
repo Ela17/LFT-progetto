@@ -48,7 +48,7 @@ public class Es1_5 {
                     break;
             }
         }
-        return state == 5;
+        return state == 4;
     }
 
     public static void main(String[] args)
