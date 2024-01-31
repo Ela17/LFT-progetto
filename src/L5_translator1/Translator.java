@@ -2,6 +2,7 @@ package L5_translator1;
 
 import java.io.*;
 import L2_lexer.*;
+import L5_support.*;
 
 enum _exprEnum {
 	sum, mul, print
