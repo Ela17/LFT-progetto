@@ -184,7 +184,6 @@ public class Translator {
     public void assignlist() {
         switch (look.tag) {
             case '[':
-            
                 match('[');
                 expr(-1);
                 match(Tag.TO);
@@ -222,22 +221,22 @@ public class Translator {
 
     private void idlist(boolean isAssign) {
         switch(look.tag) {
-	    case Tag.ID:
-        	int id_addr = st.lookupAddress(((Word)look).lexeme);
-                if (id_addr == -1) {
-                    id_addr = count;
-                    st.insert(((Word)look).lexeme,count++);
-                }
-                match(Tag.ID);
-                if(isAssign && look.tag == ',')
-                    code.emit(OpCode.dup);
-                else if(!isAssign)
-                    code.emit(OpCode.invokestatic, 0);
-                code.emit(OpCode.istore, id_addr); 
-                idlistp(isAssign);
-                break;
-                
-                default:
+            case Tag.ID:
+                int id_addr = st.lookupAddress(((Word)look).lexeme);
+                    if (id_addr == -1) {
+                        id_addr = count;
+                        st.insert(((Word)look).lexeme,count++);
+                    }
+                    match(Tag.ID);
+                    if(isAssign && look.tag == ',')
+                        code.emit(OpCode.dup);
+                    else if(!isAssign)
+                        code.emit(OpCode.invokestatic, 0);
+                    code.emit(OpCode.istore, id_addr); 
+                    idlistp(isAssign);
+                    break;
+                    
+            default:
                 error("found " + look + " in idlist");
 
     	}

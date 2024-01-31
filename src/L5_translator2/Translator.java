@@ -155,6 +155,7 @@ public class Translator {
                 match(Tag.ID);
                 match(Tag.INIT);
                 expr(tmp_addr);
+                // aggiungere istore di tmp_addr
                 match(';');
                 bexpr(label);
                 break;
@@ -257,7 +258,7 @@ public class Translator {
                 }
                 match(Tag.ID);
 
-                if(isAssign)
+                if(isAssign && look.tag == ',')
                     code.emit(OpCode.dup);
                 else if(!isAssign)                              // read
                     code.emit(OpCode.invokestatic, 0);
@@ -363,7 +364,7 @@ public class Translator {
                     error("Variable " + ((Word)look).lexeme + " not initialized.");
                 code.emit(OpCode.iload, addr); 
                 if(id_addr != -1)
-                    code.emit(OpCode.istore, id_addr); 
+                    code.emit(OpCode.istore, id_addr); // non qui
                 match(Tag.ID);
                 break;
 
