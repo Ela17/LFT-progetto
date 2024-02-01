@@ -1,6 +1,7 @@
 # Compiled class file and txt file
 *.class
 /bin/
+/input-prova/
 *.txt
 *.lft
 *.j

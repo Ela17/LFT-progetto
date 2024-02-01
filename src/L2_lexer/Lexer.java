@@ -16,13 +16,9 @@ public class Lexer {
         }
     }
 
-    private boolean is_comment(BufferedReader br){
-
-        return true;
-    }
-
     public Token lexical_scan(BufferedReader br) {
         while (peek == ' ' || peek == '\t' || peek == '\n'  || peek == '\r' || peek == '/') {
+            // gestione commenti
             if (peek == '/') {
                 readch(br);
                 if (peek == '/') {  // commento su una linea
