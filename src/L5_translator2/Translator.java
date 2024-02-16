@@ -313,18 +313,18 @@ public class Translator {
                 int orContinue = code.newLabel();
                 bexpr(label_true, orContinue, false);
                 code.emitLabel(orContinue);
-                bexpr(label_true, label_false, false);
+                bexpr(label_true, label_false, isFor);
                 break;
             case Tag.AND:
                 match(Tag.AND);
                 int andContinue = code.newLabel();
                 bexpr(andContinue, label_false, false);
                 code.emitLabel(andContinue);
-                bexpr(label_true, label_false, false);
+                bexpr(label_true, label_false, isFor);
                 break;
             case '!':
                 match('!');
-                bexpr(label_false, label_true, false);
+                bexpr(label_false, label_true, isFor);
                 break;
             default:
                 error("found " + look + " in bexpr");
